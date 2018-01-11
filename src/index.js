@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -10,10 +11,10 @@ import PostsIndex from './components/posts_index'
 // import { createStore } from 'react-redix'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
-import Reducer from './reducers/'
+import rootReducer from './reducers/'
 import promise from 'redux-promise'
 
-const store = createStore(Reducer, applyMiddleware(promise))
+const store = createStore(rootReducer, applyMiddleware(promise))
 
 ReactDOM.render(
   <Provider store={store}>
