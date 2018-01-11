@@ -8,6 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 // Route provides configuration for url
 import { BrowserRouter, Route } from 'react-router-dom'
 import PostsIndex from './components/posts_index'
+import PostsNew from './components/posts_new'
 // import { createStore } from 'react-redix'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -21,6 +22,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Route path="/" component={PostsIndex} />
+        <Route path="/posts/new" component={PostsNew} />
       </div>
     </BrowserRouter>
   </Provider>,
