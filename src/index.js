@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 // BrowserRouter interact with history library
 // Route provides configuration for url
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import PostsIndex from './components/posts_index'
 import PostsNew from './components/posts_new'
 // import { createStore } from 'react-redix'
@@ -17,12 +17,16 @@ import promise from 'redux-promise'
 
 const store = createStore(rootReducer, applyMiddleware(promise))
 
+// put the most specific route in switch
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div>
-        <Route path="/" component={PostsIndex} />
-        <Route path="/posts/new" component={PostsNew} />
+        <Switch>
+          <Route path="/posts/new" component={PostsNew} />
+          <Route path="/" component={PostsIndex} />
+        </Switch>
       </div>
     </BrowserRouter>
   </Provider>,
