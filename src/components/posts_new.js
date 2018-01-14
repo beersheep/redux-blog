@@ -7,6 +7,8 @@ class PostsNew extends Component {
   }
 
   renderField(field) {
+    const { error, touched } = field.meta
+
     return (
       <div className="form-group">
         <label>{field.label}</label>
@@ -15,7 +17,7 @@ class PostsNew extends Component {
           type='text'
           {...field.input}
         />
-        {field.meta.error}
+        {touched && error}
       </div>
     )
   }
@@ -29,6 +31,7 @@ class PostsNew extends Component {
           label="Title"
           name="title"
           component={this.renderField}
+          validate={requireValidate("Please provide a title")}
         />
         <Field
           label="Categories"
@@ -39,11 +42,16 @@ class PostsNew extends Component {
           label="Post Content"
           name="content"
           component={this.renderField}
+          validate={requireValidate("Please provide some contents")}
         />
         <button type="submit" className="btn btn-primary">Post</button>
       </form>
     )
   }
+}
+
+const requireValidate = (message) => (value) => {
+  return value ? '' : message
 }
 
 function validate(values) { // values is an object of user inputs
@@ -64,7 +72,7 @@ function validate(values) { // values is an object of user inputs
 }
 
 export default reduxForm({
-  validate, // same as validate: validate
+  // validate, // same as validate: validate
   form: 'PostsNewForm' // name of the form, has to be uniq
 })(PostsNew)
 
