@@ -6,7 +6,9 @@ import { createPost } from '../actions/'
 
 class PostsNew extends Component {
   onSubmit = (value) => {
-    this.props.createPost(value)
+    this.props.createPost(value, () => {
+      this.props.history.push('/')
+    })
   }
 
   renderField(field) {
